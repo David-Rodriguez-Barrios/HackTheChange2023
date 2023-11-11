@@ -16,9 +16,8 @@ region: process.env.AWS_REGION
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 router.post('/register', async (req, res) => {
+    console.log(req.body)
     const { name, email, location, role, password } = req.body;
-    
-    // Validate user input here (left out for brevity)
     
     // Hash password
     const salt = await bcrypt.genSalt(10);
@@ -34,7 +33,12 @@ router.post('/register', async (req, res) => {
         UID: uid,
         Name: name,
         Email: email,
-        Location: location,
+        Location: { 
+            M: {
+                Latitude: { S: location.Latitude }, 
+                Longitude: { S: location.Longitude }
+            }
+        },
         Role: role,
         Password: hashedPassword
     }
@@ -45,12 +49,10 @@ router.post('/register', async (req, res) => {
     if (err) {
         res.status(400).send(err);
     } else {
-        res.status(201).send({ UID: uid, message: 'User created successfully' });
+        res.status(201).send({ UID: uid, Name: name, message: 'User created successfully' });
     }
     });
 });
-
-
 
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
@@ -85,6 +87,38 @@ router.post('/login', async (req, res) => {
         }
     }
     });
+});
+
+router.get('/user/:uid', async (req, res) => {
+    const { uid } = req.params;
+
+    const params = {
+        TableName: 'Users',
+        Key: {
+            "UID": uid
+        }
+    };
+
+    try {
+        dynamoDb.get(params, (err, data) => {
+            if (err) {
+                console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
+                res.status(500).send(err);
+            } else {
+                console.log(data); // Log the full data object to see what is being returned
+                if (data.Item) {
+                    // Send the response without the Password field
+                    const { UID, Name, Email, Location, Role } = data.Item;
+                    res.json({ UID, Name, Email, Location, Role });
+                } else {
+                    res.status(404).send('User not found');
+                }
+            }
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
 });
 
 module.exports = router;
