@@ -309,8 +309,9 @@ output "lambda_url_get" {
 }
 
 # read the docs: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dynamodb_table
-resource "aws_dynamodb_table" "lotion-30145288" {
-  name         = "lotion-30145288"
+// USERS TABLE
+resource "aws_dynamodb_table" "Users" {
+  name         = "Users"
   billing_mode = "PROVISIONED"
 
   # up to 8KB read per second (eventually consistent)
@@ -321,17 +322,73 @@ resource "aws_dynamodb_table" "lotion-30145288" {
 
   # we only need a student id to find an item in the table; therefore, we 
   # don't need a sort key here
-  hash_key = "email"
-  range_key = "id"
+  hash_key = "UID" // parition key
+  range_key = "UID"
 
   # the hash_key data type is string
   attribute {
-    name = "email"
+    name = "UID"
     type = "S"
   }
 
   attribute {
-    name = "id"
+    name = "UID"
     type = "S"
   }
+}
+
+// ORDERS TABLE 
+resource "aws_dynamodb_table" "Orders" {
+  name         = "Orders"
+  billing_mode = "PROVISIONED"
+
+  # up to 8KB read per second (eventually consistent)
+  read_capacity = 1
+
+  # up to 1KB per second
+  write_capacity = 1
+
+  # we only need a student id to find an item in the table; therefore, we 
+  # don't need a sort key here
+  hash_key = "OrderID" // parition key
+  range_key = "OrderID"
+
+  # the hash_key data type is string
+  attribute {
+    name = "OrderID"
+    type = "S"
+  }
+
+  # attribute {
+  #   name = "OrderID"
+  #   type = "S"
+  # }
+}
+
+// ENERGY LISTING TABLE
+resource "aws_dynamodb_table" "EnergyListings" {
+  name         = "EnergyListings"
+  billing_mode = "PROVISIONED"
+
+  # up to 8KB read per second (eventually consistent)
+  read_capacity = 1
+
+  # up to 1KB per second
+  write_capacity = 1
+
+  # we only need a student id to find an item in the table; therefore, we 
+  # don't need a sort key here
+  hash_key = "ListingID" // parition key
+  range_key = "ListingID"
+
+  # the hash_key data type is string
+  attribute {
+    name = "ListingID"
+    type = "S"
+  }
+
+  # attribute {
+  #   name = "ListingID"
+  #   type = "S"
+  # }
 }
