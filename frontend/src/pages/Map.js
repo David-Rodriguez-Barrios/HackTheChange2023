@@ -105,85 +105,34 @@ function MyMap() {
     const [data, setData] = useState([]);
   
     useEffect(() => {
-      // Simulating fetching data asynchronously
-      // Replace this with your actual data fetching logic
-      const fetchData = async (e) => {
-        // Simulated data for demonstration
-        //const fakeData = [
-        //   {
-        //     listID: "asdgAWEDASf23Ey",
-        //     sellerID: "sdasdgWERf",
-        //     position: { lat: 51.0688630579, lng: -114.119499522 },
-        //     supplying: 200,
-        //     rate: 2,
-        //     email: "seller1@example.com"
-        //   },
-        //   {
-        //     listID: "asdgdsdAWEDASf23Ey",
-        //     sellerID: "sdasdgWdsdgERf",
-        //     position: { lat: 39.901996392, lng: 116.38833178 },
-        //     supplying: 424,
-        //     rate: 4,
-        //     email: "seller2@example.com"
-        //   },
-        //   {
-        //     listID: "asdgdsdAWEDASf23Ey",
-        //     sellerID: "sdasdgWdsdgERf",
-        //     position: { lat: 51.0520, lng: -114.0653 },
-        //     supplying: 300,
-        //     rate: 3,
-        //     email: "seller3@example.com"
-        //   },
-        //   {
-        //     listID: "asdgdsdAWEDASf23Ey",
-        //     sellerID: "sdasdgWdsdgERf",
-        //     position: { lat: 51.0486, lng: -114.0708 },
-        //     supplying: 150,
-        //     rate: 5,
-        //     email: "seller4@example.com"
-        //   },
-        //   {
-        //     listID: "asdgdsdAWEDASf23Ey",
-        //     sellerID: "sdasdgWdsdgERf",
-        //     position: { lat: 51.0710, lng: -114.1996 },
-        //     supplying: 400,
-        //     rate: 4,
-        //     email: "seller5@example.com"
-        //   }
-        // ];
-
-        e.preventDefault();
-        try {
-        const response = await fetch('http://localhost:8000/api/auth/', {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-            Name: name,
-            Email: email,
-            Location: {
-                Latitude: parseFloat(location.Latitude),
-                Longitude: parseFloat(location.Longitude)
-            },
-            Role: role,
-            Password: password 
-            }),
-        });
-    
-        const data = await response.json();
-        // Handle the response data
-        console.log(data);
-        } catch (error) {
-        // Handle errors
-        console.error(error);
-        }
-            
-        setData(data);
-      };
-  
-      fetchData();
-    }, []);
+        // Simulating fetching data asynchronously
+        // Replace this with your actual data fetching logic
+        const fetchData = async () => {
+          try {
+            const response = await fetch(`http://localhost:8000/api/listings/listings`, {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            });
+      
+            if (response.ok) {
+              const data = await response.json();
+              // Handle the response data
+              setData(data);  // Set the data to the state
+              console.log(data);
+            } else {
+              // Handle errors
+              console.error(`Error: ${response.status} - ${response.statusText}`);
+            }
+          } catch (error) {
+            // Handle errors
+            console.error(error);
+          }
+        };
+      
+        fetchData();
+      }, []);  // Empty dependency array to run once when component mounts
   
     return (
       <>
