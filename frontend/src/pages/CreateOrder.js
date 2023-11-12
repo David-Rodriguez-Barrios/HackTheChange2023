@@ -32,7 +32,7 @@ export default function CreateListing() {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:8000//api/listings/create-listing', {
+      const response = await fetch('http://localhost:8000/api/listings/create-listing', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
