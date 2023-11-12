@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const AWS = require('aws-sdk');
+const { v4: uuidv4 } = require('uuid');
 
 // Configure AWS
 AWS.config.update({
@@ -37,6 +38,40 @@ router.get('/listings', async (req, res) => {
     console.error(error);
     res.status(500).send(error.message);
   }
+});
+
+router.post('/create-listing', async (req, res) => {
+  const dynamoDb = new AWS.DynamoDB.DocumentClient();
+
+  // Extract listing information from request body
+  const { sellerId, position, supplying, rate, email } = req.body;
+
+  // Generate a new unique ID for the listing
+  const listingId = uuidv4();
+
+  const params = {
+    TableName: 'EnergyListings', // Replace with your actual table name
+    Item: {
+      ListingID: listingId,
+      sellerId: sellerId,
+      position: {
+        lat: parseFloat(position.lat),
+        lng: parseFloat(position.lng)
+      },
+      supplying: parseInt(supplying, 10),
+      rate: parseFloat(rate),
+      email: email
+    }
+  };
+
+  dynamoDb.put(params, (err, data) => {
+    if (err) {
+      console.error("Unable to add listing. Error JSON:", JSON.stringify(err, null, 2));
+      res.status(500).send(err);
+    } else {
+      res.status(201).send({ ListingID: listingId, message: 'Listing created successfully' });
+    }
+  });
 });
 
 module.exports = router;

@@ -5,6 +5,8 @@ import Listings from './pages/Listings';
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Map from './pages/Map'
+import CreateListing from './pages/CreateOrder'
+
 const App = () => {
   return (
     <Router>
@@ -14,6 +16,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/Map" element={<Map/>} />
+        <Route path="/create" element={<CreateListing/>} />
 
       </Routes>
     </Router>
