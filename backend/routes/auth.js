@@ -16,41 +16,40 @@ region: process.env.AWS_REGION
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 router.post('/register', async (req, res) => {
-    console.log(req.body)
+    console.log(req.body);
     const { name, email, location, role, password } = req.body;
-    
+
     // Hash password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-    
+
     // Create UID for the new user
     const uid = uuidv4();
 
     // Create user object for DynamoDB
     const user = {
-    TableName: 'Users',
-    Item: {
-        UID: uid,
-        Name: name,
-        Email: email,
-        Location: { 
-            M: {
-                Latitude: { S: location.Latitude }, 
-                Longitude: { S: location.Longitude }
-            }
-        },
-        Role: role,
-        Password: hashedPassword
-    }
+        TableName: 'Users',
+        Item: {
+            UID: uid,
+            Name: name,
+            Email: email,
+            Location: { 
+                Latitude: parseFloat(location.Latitude), // Store as a Number
+                Longitude: parseFloat(location.Longitude) // Store as a Number
+            },
+            Role: role,
+            Password: hashedPassword // Consider omitting this from the response
+        }
     };
 
     // Save user to DynamoDB
     dynamoDb.put(user, (err, data) => {
-    if (err) {
-        res.status(400).send(err);
-    } else {
-        res.status(201).send({ UID: uid, Name: name, message: 'User created successfully' });
-    }
+        if (err) {
+            console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
+            res.status(400).send(err);
+        } else {
+            res.status(201).send({ UID: uid, Name: name, message: 'User created successfully' });
+        }
     });
 });
 
