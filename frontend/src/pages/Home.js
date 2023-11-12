@@ -493,7 +493,7 @@ export default function Home() {
                             />
                             </div>
                             <div className="text-base font-medium text-gray-700">
-                            David Roudriguez, Software Engineer
+                            David Rodriguez, Software Engineer
                             </div>
                         </div>
                         </footer>

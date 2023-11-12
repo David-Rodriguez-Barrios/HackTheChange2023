@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const Register = () => {
 const [name, setName] = useState('');
@@ -6,6 +7,7 @@ const [email, setEmail] = useState('');
 const [location, setLocation] = useState({ Latitude: '', Longitude: '' });
 const [role, setRole] = useState('');
 const [password, setPassword] = useState('');
+const history = useHistory();
 
 const handleLocationChange = (e) => {
     const { name, value } = e.target;
@@ -38,6 +40,7 @@ const handleRegister = async (e) => {
     const data = await response.json();
     // Handle the response data
     console.log(data);
+    history.push('/listing');
     } catch (error) {
     // Handle errors
     console.error(error);

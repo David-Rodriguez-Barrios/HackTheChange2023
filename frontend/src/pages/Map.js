@@ -133,6 +133,7 @@ function MyMap() {
       
         fetchData();
       }, []);  // Empty dependency array to run once when component mounts
+
   
     return (
       <>
