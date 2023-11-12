@@ -263,13 +263,13 @@ export default function Home() {
                     )}
                 </Popover>
     
-                <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                <a href="/create" className="text-base font-medium text-gray-500 hover:text-gray-900">
                     Create Order
                 </a>
                 <a href="/listings" className="text-base font-medium text-gray-500 hover:text-gray-900">
                     Listings
                 </a>
-                <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                <a href="/contact" className="text-base font-medium text-gray-500 hover:text-gray-900">
                     About Us
                 </a>
                 </Popover.Group>
@@ -504,7 +504,7 @@ export default function Home() {
                     <div className="-mr-48 pl-6 md:-mr-16 lg:relative lg:m-0 lg:h-full lg:px-0">
                     <img
                         className="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
-                        src="https://tailwindui.com/img/component-images/inbox-app-screenshot-1.jpg"
+                        src="https://cdn.discordapp.com/attachments/1172963189982507080/1173332050493853866/image.png"
                         alt="Inbox user interface"
                     />
                     </div>
@@ -542,7 +542,7 @@ export default function Home() {
                     <div className="-ml-48 pr-6 md:-ml-16 lg:relative lg:m-0 lg:h-full lg:px-0">
                     <img
                         className="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none"
-                        src="https://tailwindui.com/img/component-images/inbox-app-screenshot-2.jpg"
+                        src="https://cdn.discordapp.com/attachments/1172963189982507080/1173332138691670216/image.png"
                         alt="Customer profile user interface"
                     />
                     </div>
