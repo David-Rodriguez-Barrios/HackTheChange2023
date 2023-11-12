@@ -7,17 +7,26 @@ import {
   EllipsisVerticalIcon,
   MagnifyingGlassIcon,
 } from '@heroicons/react/20/solid'
-
+import * as localStorage from 'local-storage';
 const navigation = [
   { name: 'Listings', href: '#', icon: HomeIcon, current: true },
   { name: 'Map', href: '/Map', icon: Bars4Icon, current: false },
+  { name: "Create Listing ",href:  "/CreateOrder",icon: Bars4Icon, current: false  }
 ]
 const teams = [
   { name: 'Engineering', href: '#', bgColorClass: 'bg-indigo-500' },
   { name: 'Human Resources', href: '#', bgColorClass: 'bg-green-500' },
   { name: 'Customer Success', href: '#', bgColorClass: 'bg-yellow-500' },
-]
 
+
+]
+// let Name = "Jessy Schwarz";
+let Name ="";
+
+const storedName = localStorage.get('Name');
+if (storedName !== null) {
+  Name = storedName;
+}
 const projects = [
   {
     id: 1,
@@ -63,10 +72,11 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function Example({email}) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
+    
     <>
       {/*
         This example requires updating your template:
@@ -203,14 +213,9 @@ export default function Example() {
                 <Menu.Button className="group w-full rounded-md bg-gray-100 px-3.5 py-2 text-left text-sm font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-100">
                   <span className="flex w-full items-center justify-between">
                     <span className="flex min-w-0 items-center justify-between space-x-3">
-                      <img
-                        className="h-10 w-10 flex-shrink-0 rounded-full bg-gray-300"
-                        src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
-                        alt=""
-                      />
+                    
                       <span className="flex min-w-0 flex-1 flex-col">
-                        <span className="truncate text-sm font-medium text-gray-900">Jessy Schwarz</span>
-                        <span className="truncate text-sm text-gray-500">@jessyschwarz</span>
+                        <span className="truncate text-sm font-medium text-gray-900">{Name}</span>
                       </span>
                     </span>
                     <ChevronUpDownIcon
