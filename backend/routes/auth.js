@@ -17,11 +17,11 @@ const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 router.post('/register', async (req, res) => {
     console.log(req.body);
-    const { name, email, location, role, password } = req.body;
+    const { Name, Email, Location, Role, Password } = req.body;
 
     // Hash password
     const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    const hashedPassword = await bcrypt.hash(Password, salt);
 
     // Create UID for the new user
     const uid = uuidv4();
@@ -31,13 +31,13 @@ router.post('/register', async (req, res) => {
         TableName: 'Users',
         Item: {
             UID: uid,
-            Name: name,
-            Email: email,
+            Name: Name,
+            Email: Email,
             Location: { 
-                Latitude: parseFloat(location.Latitude), // Store as a Number
-                Longitude: parseFloat(location.Longitude) // Store as a Number
+                Latitude: parseFloat(Location.Latitude), // Store as a Number
+                Longitude: parseFloat(Location.Longitude) // Store as a Number
             },
-            Role: role,
+            Role: Role,
             Password: hashedPassword // Consider omitting this from the response
         }
     };
@@ -48,7 +48,7 @@ router.post('/register', async (req, res) => {
             console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
             res.status(400).send(err);
         } else {
-            res.status(201).send({ UID: uid, Name: name, message: 'User created successfully' });
+            res.status(201).send({ UID: uid, Name: Name, message: 'User created successfully' });
         }
     });
 });
