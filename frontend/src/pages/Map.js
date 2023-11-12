@@ -160,13 +160,13 @@ function MyMap() {
             'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-            Name: name,
-            Email: email,
+            Name: Name,
+            Email: Email,
             Location: {
-                Latitude: parseFloat(location.Latitude),
-                Longitude: parseFloat(location.Longitude)
+                Latitude: parseFloat(Location.Latitude),
+                Longitude: parseFloat(Location.Longitude)
             },
-            Role: role,
+            Role: Role,
             Password: password 
             }),
         });
