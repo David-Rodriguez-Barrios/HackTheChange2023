@@ -40,6 +40,8 @@ const handleRegister = async (e) => {
     const data = await response.json();
     // Handle the response data
     console.log(data);
+    localStorage.setItem('Name', data.Name);
+   
     navigate('/listings');
     } catch (error) {
     // Handle errors

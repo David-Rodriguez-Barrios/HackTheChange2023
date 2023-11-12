@@ -7,7 +7,7 @@ import {
   EllipsisVerticalIcon,
   MagnifyingGlassIcon,
 } from '@heroicons/react/20/solid'
-
+import * as localStorage from 'local-storage';
 const navigation = [
   { name: 'Listings', href: '#', icon: HomeIcon, current: true },
   { name: 'Map', href: '/Map', icon: Bars4Icon, current: false },
@@ -17,8 +17,16 @@ const teams = [
   { name: 'Engineering', href: '#', bgColorClass: 'bg-indigo-500' },
   { name: 'Human Resources', href: '#', bgColorClass: 'bg-green-500' },
   { name: 'Customer Success', href: '#', bgColorClass: 'bg-yellow-500' },
-]
 
+
+]
+// let Name = "Jessy Schwarz";
+let Name ="";
+
+const storedName = localStorage.get('Name');
+if (storedName !== null) {
+  Name = storedName;
+}
 const projects = [
   {
     id: 1,
@@ -207,7 +215,7 @@ export default function Example({email}) {
                     <span className="flex min-w-0 items-center justify-between space-x-3">
                     
                       <span className="flex min-w-0 flex-1 flex-col">
-                        <span className="truncate text-sm font-medium text-gray-900">{email}</span>
+                        <span className="truncate text-sm font-medium text-gray-900">{Name}</span>
                       </span>
                     </span>
                     <ChevronUpDownIcon
