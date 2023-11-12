@@ -13,11 +13,13 @@ app.use(express.json());
 const authRoutes = require('./routes/auth');
 const geocodeRoutes = require('./routes/geocode');
 const userRoutes = require('./routes/users');
+const listings = require("./routes/listings")
 
 // Use routes
 app.use('/api/auth', authRoutes);
 app.use('/api/geocode', geocodeRoutes);
 app.use('/api/users', userRoutes);
+app.use("/api/listings",listings);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
