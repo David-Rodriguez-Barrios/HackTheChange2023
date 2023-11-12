@@ -189,7 +189,7 @@ export default function Map() {
               <h2>Email: ${email}</h2>
               <p>Supplying: ${supplying} Watt</p>
               <p>Rate: $${rate} /Watts</p>
-              <button onclick="openContactForm()">Contact Seller</button>
+              <button hover="openContactForm()">Contact Seller</button>
             </div>
           `,
         });
