@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate}  from 'react-router-dom';
 
 export default function CreateListing() {
+    const navigate = useNavigate();
   const [listing, setListing] = useState({
     sellerId: '', // This should be the UID of the logged-in user
     position: { lat: '', lng: '' },
@@ -43,7 +45,7 @@ export default function CreateListing() {
       if (response.ok) {
         // Handle successful creation
         console.log('Listing created successfully');
-        // Redirect or clear form here
+        navigate('/listings');
       } else {
         // Handle errors
         console.error('Failed to create listing');
@@ -54,6 +56,21 @@ export default function CreateListing() {
   };
 
   return (
+    <>
+    <div>
+    <img
+    className="h-12 w-auto"
+    src="https://img.icons8.com/ios-filled/50/electro-devices.png?color=indigo&shade=600"
+    alt="Your Company"
+    />
+    <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">Create a Listing</h2>
+    <p className="mt-2 text-sm text-gray-600">
+    Or{' '}
+    <a href="/listings" className="font-medium text-indigo-600 hover:text-indigo-500">
+        get back
+    </a>
+    </p>
+    </div>
     <form className="space-y-6" onSubmit={handleSubmit}>
       {/* Form fields */}
       <div className="bg-white px-4 py-5 shadow sm:rounded-lg sm:p-6">
@@ -152,6 +169,6 @@ export default function CreateListing() {
           Create Listing
         </button>
       </div>
-    </form>
+    </form></>
   );
 }
