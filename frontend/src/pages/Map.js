@@ -11,11 +11,12 @@ import {
 import "../assets/styles/Map.css"
 
 import { Wrapper } from "@googlemaps/react-wrapper";
+import * as localStorage from 'local-storage';
 
 const navigation = [
   { name: 'Listings', href: '/Listings', icon: HomeIcon, current: false },
   { name: 'Map', href: '/Map', icon: Bars4Icon, current: true },
-  { name: "Create Listing ",href:  "/CreateOrder",icon: Bars4Icon, current: false  }
+  { name: "Create Listing ",href:  "/create",icon: Bars4Icon, current: false  }
 
 ]
 const teams = [
@@ -26,8 +27,11 @@ const teams = [
 
 const apiKey = "AIzaSyDu9piaKLUafIii0mOo_4kBWireBuBD9c8"
 const mapID = "cffb0fc5ff2ba235"
-
-
+let Name = ""
+const storedName = localStorage.get('Name');
+if (storedName !== null) {
+  Name = storedName;
+}
 
 const projects = [
   {
@@ -342,14 +346,10 @@ export default function Example() {
                 <Menu.Button className="group w-full rounded-md bg-gray-100 px-3.5 py-2 text-left text-sm font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-100">
                   <span className="flex w-full items-center justify-between">
                     <span className="flex min-w-0 items-center justify-between space-x-3">
-                      <img
-                        className="h-10 w-10 flex-shrink-0 rounded-full bg-gray-300"
-                        src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
-                        alt=""
-                      />
+
                       <span className="flex min-w-0 flex-1 flex-col">
-                        <span className="truncate text-sm font-medium text-gray-900">Jessy Schwarz</span>
-                        <span className="truncate text-sm text-gray-500">@jessyschwarz</span>
+                        <span className="truncate text-sm font-medium text-gray-900">{Name}</span>
+                        <span className="truncate text-sm text-gray-500"></span>
                       </span>
                     </span>
                     <ChevronUpDownIcon
