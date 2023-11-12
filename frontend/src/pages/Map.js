@@ -107,7 +107,7 @@ function MyMap() {
     useEffect(() => {
       // Simulating fetching data asynchronously
       // Replace this with your actual data fetching logic
-      const fetchData = async () => {
+      const fetchData = async (e) => {
         // Simulated data for demonstration
         //const fakeData = [
         //   {
