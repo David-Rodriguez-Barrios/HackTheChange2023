@@ -193,7 +193,7 @@ export default function Home() {
             <Popover className="relative bg-white">
             <div className="mx-auto flex max-w-7xl items-center justify-between p-6 md:justify-start md:space-x-10 lg:px-8">
                 <div className="flex justify-start lg:w-0 lg:flex-1">
-                <a href="#">
+                <a href="/#">
                     <span className="sr-only">VoltVillage</span>
                     <img
                     className="h-8 w-auto sm:h-10"
@@ -266,7 +266,7 @@ export default function Home() {
                 <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
                     Create Order
                 </a>
-                <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                <a href="/listings" className="text-base font-medium text-gray-500 hover:text-gray-900">
                     Listings
                 </a>
                 <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
@@ -274,11 +274,11 @@ export default function Home() {
                 </a>
                 </Popover.Group>
                 <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-                <a href="#" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
+                <a href="/login" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
                     Sign in
                 </a>
                 <a
-                    href="#"
+                    href="/register"
                     className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-2 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700"
                 >
                     Sign up
@@ -391,7 +391,7 @@ export default function Home() {
                     <div className="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">
                     <div className="space-y-4 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5 sm:space-y-0">
                         <a
-                        href="#"
+                        href="/register"
                         className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium text-indigo-700 shadow-sm hover:bg-indigo-50 sm:px-8"
                         >
                         Get started
