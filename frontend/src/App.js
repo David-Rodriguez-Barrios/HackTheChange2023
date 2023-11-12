@@ -19,7 +19,6 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/Map" element={<Map/>} />
         <Route path="/create" element={<CreateListing/>} />
-
       </Routes>
     </Router>
   );

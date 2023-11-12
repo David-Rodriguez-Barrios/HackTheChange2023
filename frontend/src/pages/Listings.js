@@ -11,12 +11,12 @@ import * as localStorage from 'local-storage';
 const navigation = [
   { name: 'Listings', href: '#', icon: HomeIcon, current: true },
   { name: 'Map', href: '/Map', icon: Bars4Icon, current: false },
-  { name: "Create Listing ",href:  "/CreateOrder",icon: Bars4Icon, current: false  }
+  { name: "Create Listing ",href:  "/create",icon: Bars4Icon, current: false  }
 ]
 const teams = [
-  { name: 'Engineering', href: '#', bgColorClass: 'bg-indigo-500' },
-  { name: 'Human Resources', href: '#', bgColorClass: 'bg-green-500' },
-  { name: 'Customer Success', href: '#', bgColorClass: 'bg-yellow-500' },
+  { name: 'My account', href: '#', bgColorClass: 'bg-indigo-500' },
+  { name: 'Settings', href: '#', bgColorClass: 'bg-green-500' },
+  { name: 'Transaction', href: '#', bgColorClass: 'bg-yellow-500' },
 
 
 ]
@@ -167,7 +167,7 @@ export default function Example({email}) {
                       </div>
                       <div className="mt-8">
                         <h3 className="px-3 text-sm font-medium text-gray-500" id="mobile-teams-headline">
-                          Teams
+                          Account
                         </h3>
                         <div className="mt-1 space-y-1" role="group" aria-labelledby="mobile-teams-headline">
                           {teams.map((team) => (
@@ -370,7 +370,7 @@ export default function Example({email}) {
               <div className="mt-8">
                 {/* Secondary navigation */}
                 <h3 className="px-3 text-sm font-medium text-gray-500" id="desktop-teams-headline">
-                  Teams
+                  Account
                 </h3>
                 <div className="mt-1 space-y-1" role="group" aria-labelledby="desktop-teams-headline">
                   {teams.map((team) => (
@@ -648,7 +648,7 @@ export default function Example({email}) {
             {/* Projects list (only on smallest breakpoint) */}
             <div className="mt-10 sm:hidden">
               <div className="px-4 sm:px-6">
-                <h2 className="text-sm font-medium text-gray-900">Projects</h2>
+                <h2 className="text-sm font-medium text-gray-900">Sellers in your area</h2>
               </div>
               <ul role="list" className="mt-3 divide-y divide-gray-100 border-t border-gray-200">
                 {projects.map((project) => (
@@ -683,7 +683,7 @@ export default function Example({email}) {
                         className="border-b border-gray-200 bg-gray-50 px-6 py-3 text-left text-sm font-semibold text-gray-900"
                         scope="col"
                       >
-                        <span className="lg:pl-2">Project</span>
+                        <span className="lg:pl-2">Sellers in your area</span>
                       </th>
                       <th
                         className="border-b border-gray-200 bg-gray-50 px-6 py-3 text-left text-sm font-semibold text-gray-900"
