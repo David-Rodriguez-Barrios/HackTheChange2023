@@ -13,6 +13,7 @@ secretAccessKey: process.env.AWS_SECRET_KEY,
 region: process.env.AWS_REGION
 });
 
+console.log(AWS.config)
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 router.post('/register', async (req, res) => {
